@@ -1,0 +1,25 @@
+<html>
+    <head><title>SQL TASK</title></head>
+    <body>
+    a => SELECT FIRST_NAME AS EmployeeName from employee;<br>
+    b => SELECT FIRST_NAME,JOINING_DATE FROM employee;<br>
+    c => SELECT FIRST_NAME,SALARY FROM employee ORDER BY FIRST_NAME ASC, SALARY DESC;<br>
+    d => SELECT * FROM employee WHERE FIRST_NAME LIKE '_o%';<br>
+    e => SELECT * FROM employee WHERE JOINING_DATE LIKE '2013-01%';<br>
+    f => SELECT DEPARTMENT, SUM(SALARY) AS TotalSalary FROM employee GROUP BY DEPARTMENT ORDER BY TotalSalary DESC;<br>
+    g => SELECT DEPARTMENT,MAX(SALARY) AS MAX_SALARY FROM employee GROUP BY DEPARTMENT ORDER BY SALARY ASC;<br> 
+    h => SELECT FIRST_NAME,SALARY FROM employee JOIN incentives on incentives.EMPLOYEE_REF_ID = employee.EM_ID WHERE INCENTIVE_AMT > 3000;<br>
+    i => SELECT SALARY FROM employee WHERE SALARY = (SELECT MAX(SALARY) FROM employee WHERE SALARY (SELECT MAX(SALARY) FROM employee));<br>
+    j => SELECT * FROM employee LEFT JOIN incentives on incentives.EMPLOYEE_REF_ID = employee.EM_ID;<br>
+    k => CREATE VIEW ViewEmployee AS SELECT FIRST_NAME,LAST_NAME,SALARY FROM employee;<br> 
+    l => CREATE PROCEDURE find()
+    BEGIN
+    SELECT DEPARTMENT, MAX(SALARY) AS highest_salary, EM_ID, FIRST_NAME 
+    FROM employee
+    GROUP BY DEPARTMENT;
+    END<br>
+    m => CREATE TRIGGER insert_trigger AFTER INSERT on employee for EACH ROW
+    BEGIN INSERT INTO viewemployee(FIRST_NAME,LAST_NAME,SALARY,action_performed) VALUES (new.FIRST_NAME,new.LAST_NAME,new.SALARY,'Record Inserted');
+    END<br>
+</body>
+</html>
